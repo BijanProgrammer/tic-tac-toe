@@ -21,7 +21,7 @@
     </head>
 
     <body>
-        <section data-step="1" class="center">
+        <section data-step="1">
             <header>
                 <h2>Hello, friend!</h2>
             </header>
@@ -31,18 +31,19 @@
             </main>
         </section>
 
-        <section data-step="2" class="center">
+        <section data-step="2">
             <header>
                 <h2>Select a game mode</h2>
             </header>
 
             <main>
+                <button id="player-vs-player-button" class="secondary">Player vs Player</button>
                 <button id="player-vs-ai-button" class="secondary">Player vs AI</button>
                 <button id="ai-vs-ai-button" class="secondary">AI vs AI</button>
             </main>
         </section>
 
-        <section data-step="3" class="center">
+        <section data-step="3">
             <header>
                 <h2>Select board's size</h2>
             </header>
@@ -53,14 +54,26 @@
             </main>
         </section>
 
-        <section data-step="4">
+        <section data-step="4" class="game">
             <header>
                 <h2 id="current-player-indicator"></h2>
             </header>
 
             <main>
-                <div id="board"></div>
+                <table>
+                    <tbody id="board"></tbody>
+                </table>
             </main>
         </section>
+	
+	    <section data-step="5">
+		    <header>
+			    <h2 id="winner-indicator"></h2>
+		    </header>
+		
+		    <main>
+			    <button id="play-again-button" class="primary">Play again!</button>
+		    </main>
+	    </section>
     </body>
 </html>
