@@ -43,13 +43,21 @@
             </main>
         </section>
 
-        <section data-step="3">
+        <section data-step="3" class="settings">
             <header>
-                <h2>Select board's size</h2>
+                <h2>Customize game's settings</h2>
             </header>
 
             <main>
+                <label for="board-size-input">board's size</label>
                 <input id="board-size-input" type="number" min="3" value="3" />
+
+                <label for="maximum-searchable-depth-by-ai-input">maximum searchable depth by AI</label>
+                <input id="maximum-searchable-depth-by-ai-input" type="number" min="2" value="4" />
+	
+	            <label for="ai-delay-input">AI's delay (ms)</label>
+	            <input id="ai-delay-input" type="number" min="0" value="0" />
+	            
                 <button id="play-button" class="secondary">Play!</button>
             </main>
         </section>
@@ -65,15 +73,15 @@
                 </table>
             </main>
         </section>
-	
-	    <section data-step="5">
-		    <header>
-			    <h2 id="winner-indicator"></h2>
-		    </header>
-		
-		    <main>
-			    <button id="play-again-button" class="primary">Play again!</button>
-		    </main>
-	    </section>
+
+        <section data-step="5">
+            <header>
+                <h2 id="winner-indicator"></h2>
+            </header>
+
+            <main>
+                <button id="play-again-button" class="primary">Play again!</button>
+            </main>
+        </section>
     </body>
 </html>

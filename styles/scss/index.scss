@@ -5,13 +5,7 @@ body {
 
     width: 100%;
 
-    // TODO: remove this
-    transform: translateX(-300%);
-
     transition: transform var(--animation--duration--normal) ease-in-out;
-
-    // TODO: remove this
-    transition-duration: 0s;
 
     section {
         flex-shrink: 0;
@@ -42,6 +36,24 @@ body {
 
                 &.o {
                     color: var(--color--warning);
+                }
+            }
+        }
+
+        &.settings {
+            main {
+                display: grid;
+                grid-template-columns: 1fr;
+	            gap: 0;
+	            
+                label {
+                }
+
+                input {
+	                margin-block-end: 2rem;
+                }
+
+                button {
                 }
             }
         }

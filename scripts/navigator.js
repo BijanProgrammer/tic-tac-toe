@@ -8,6 +8,8 @@ const aiVsAiButton = document.querySelector('#ai-vs-ai-button');
 const playButton = document.querySelector('#play-button');
 
 const boardSizeInput = document.querySelector('#board-size-input');
+const maximumSearchableDepthByAiInput = document.querySelector('#maximum-searchable-depth-by-ai-input');
+const aiDelayInput = document.querySelector('#ai-delay-input');
 
 const winnerIndicator = document.querySelector('#winner-indicator');
 const playAgainButton = document.querySelector('#play-again-button');
@@ -15,6 +17,8 @@ const playAgainButton = document.querySelector('#play-again-button');
 // GLOBAL VARIABLES
 let gameMode = GameMode.AI_VS_AI;
 let boardSize = 3;
+let maximumSearchableDepthByAi = 2;
+let aiDelay = 1000;
 
 // GLOBAL FUNCTIONS
 const initializeNavigation = (generateBoard) => {
@@ -37,7 +41,16 @@ const initializeNavigation = (generateBoard) => {
 
     playButton.addEventListener('click', () => {
         boardSize = boardSizeInput.value || 3;
-        generateBoard(gameMode, boardSize);
+        maximumSearchableDepthByAi = maximumSearchableDepthByAiInput.value || 2;
+        aiDelay = aiDelayInput.value || 0;
+
+        generateBoard({
+            gameMode,
+            boardSize,
+            maximumSearchableDepthByAi,
+            aiDelay,
+        });
+
         navigate(4);
     });
 

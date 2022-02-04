@@ -3,17 +3,21 @@ import {GameStatus} from './models/game-status.js';
 
 let board;
 let boardSize;
+let maximumSearchableDepthByAi;
 
-const computeBestNextMove = (matrix, currentPlayer) => {
-    console.log(matrix);
+const computeBestNextMove = (settings) => {
+    const {matrix, currentPlayer} = settings;
+    ({maximumSearchableDepthByAi} = settings);
 
     board = matrix;
     boardSize = matrix.length;
 
-    return currentPlayer === Player.O ? alphaBetaMax(-2, 2) : alphaBetaMin(-2, 2);
+    return currentPlayer === Player.O ? alphaBetaMax(-2, 2, 0) : alphaBetaMin(-2, 2, 0);
 };
 
-const alphaBetaMax = (alpha, beta) => {
+const alphaBetaMax = (alpha, beta, depth) => {
+    if (depth > maximumSearchableDepthByAi) return {score: 0};
+
     const status = gameStatus();
     if (status === GameStatus.X_WON) return {score: -1};
     else if (status === GameStatus.O_WON) return {score: 1};
@@ -29,7 +33,7 @@ const alphaBetaMax = (alpha, beta) => {
 
             board[r][c] = Player.O;
 
-            const {score} = alphaBetaMin(alpha, beta);
+            const {score} = alphaBetaMin(alpha, beta, depth + 1);
             if (maxScore < score) {
                 maxScore = score;
                 row = r;
@@ -47,7 +51,9 @@ const alphaBetaMax = (alpha, beta) => {
     return {row, col, score: maxScore};
 };
 
-const alphaBetaMin = (alpha, beta) => {
+const alphaBetaMin = (alpha, beta, depth) => {
+    if (depth > maximumSearchableDepthByAi) return {score: 0};
+
     const status = gameStatus();
     if (status === GameStatus.X_WON) return {score: -1};
     else if (status === GameStatus.O_WON) return {score: 1};
@@ -63,7 +69,7 @@ const alphaBetaMin = (alpha, beta) => {
 
             board[r][c] = Player.X;
 
-            const {score} = alphaBetaMax(alpha, beta);
+            const {score} = alphaBetaMax(alpha, beta, depth + 1);
             if (minScore > score) {
                 minScore = score;
                 row = r;
