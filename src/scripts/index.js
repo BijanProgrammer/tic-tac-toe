@@ -1,6 +1,7 @@
 import {GameMode} from './models/game-mode.js';
 import {Player} from './models/player.js';
 import {gameOver, initializeNavigation} from './navigator.js';
+import {computeBestNextMove} from './ai.js';
 
 // DOM
 const currentPlayerIndicator = document.querySelector('#current-player-indicator');
@@ -19,6 +20,7 @@ const play = (selectedGameMode, selectedBoardSize) => {
     generateBoard();
     initializeEventListeners();
     syncCurrentPlayerIndicator();
+    checkForAiTurn();
 };
 
 const generateBoard = () => {
@@ -56,11 +58,37 @@ const initializeEventListeners = () => {
 const changePlayer = () => {
     currentPlayer = currentPlayer === Player.O ? Player.X : Player.O;
     syncCurrentPlayerIndicator();
+    checkForAiTurn();
 };
 
 const syncCurrentPlayerIndicator = () => {
     currentPlayerIndicator.innerHTML = `${currentPlayer}'s turn ...`;
     currentPlayerIndicator.className = currentPlayer.toLowerCase();
+};
+
+const checkForAiTurn = () => {
+    const isAiInGame = gameMode !== GameMode.PLAYER_VS_PLAYER;
+    const isAiTurn = gameMode === GameMode.AI_VS_AI || currentPlayer === Player.X;
+    if (!isAiInGame || !isAiTurn) return;
+
+    playWithAi();
+};
+
+const playWithAi = () => {
+    board.className = 'ai';
+
+    setTimeout(() => {
+        const boardMatrix = [...board.querySelectorAll('tr')].map((row) =>
+            [...row.querySelectorAll('td')].map((cell) => cell.innerHTML.trim())
+        );
+
+        const {row, col} = computeBestNextMove(boardMatrix ,  currentPlayer );
+        console.log({row, col});
+        const cell = board.querySelector(`tr:nth-of-type(${row + 1}) td:nth-of-type(${col + 1})`);
+        cell.click();
+
+        board.className = '';
+    }, 1000);
 };
 
 // EVENT LISTENERS
@@ -87,13 +115,6 @@ const cellClickHandler = (cell, row, col, isInPrimaryDiagonal, isInSecondaryDiag
     const isPrimaryDiagonalFilled = isInPrimaryDiagonal && checkCells(`td[data-is-in-primary-diagonal="true"]`);
     const isSecondaryDiagonalFilled = isInSecondaryDiagonal && checkCells(`td[data-is-in-secondary-diagonal="true"]`);
 
-    console.log({
-        isRowFilled,
-        isColFilled,
-        isPrimaryDiagonalFilled,
-        isSecondaryDiagonalFilled,
-    });
-
     if (isRowFilled || isColFilled || isPrimaryDiagonalFilled || isSecondaryDiagonalFilled) gameOver(currentPlayer);
     else if (board.querySelectorAll('td:not(.x, .o)').length === 0) gameOver();
     else changePlayer();
@@ -108,7 +129,7 @@ const main = () => {
     initializeNavigation(play);
 
     // TODO: remove this
-    play(GameMode.AI_VS_AI, 3);
+    play(GameMode.PLAYER_VS_AI, 3);
 };
 
 main();

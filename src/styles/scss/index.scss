@@ -60,32 +60,38 @@ body {
                     font-size: 2.4rem;
                     font-weight: 700;
 
-                    &,
-                    td {
-                        border: 1px solid var(--color--border--fade);
-                    }
+                    #board {
+                        &.ai {
+                            pointer-events: none;
+                        }
 
-                    td {
-                        width: 10rem;
+                        &,
+                        td {
+                            border: 1px solid var(--color--border--fade);
+                        }
 
-                        padding: 1rem;
+                        td {
+                            width: 10rem;
 
-                        &:not(.x, .o) {
-                            cursor: pointer;
+                            padding: 1rem;
 
-                            &:hover {
-                                background-color: var(--color-gray-90);
+                            &:not(.x, .o) {
+                                cursor: pointer;
+
+                                &:hover {
+                                    background-color: var(--color-gray-90);
+                                }
                             }
-                        }
 
-                        &.x {
-                            background-color: var(--color--primary);
-                            color: var(--color--primary-opposite);
-                        }
+                            &.x {
+                                background-color: var(--color--primary);
+                                color: var(--color--primary-opposite);
+                            }
 
-                        &.o {
-                            background-color: var(--color--warning);
-                            color: var(--color--warning-opposite);
+                            &.o {
+                                background-color: var(--color--warning);
+                                color: var(--color--warning-opposite);
+                            }
                         }
                     }
                 }
