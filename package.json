@@ -1,0 +1,15 @@
+{
+    "name": "tic-tac-toe",
+    "version": "1.0.0",
+    "scripts": {
+        "start": "concurrently \"live-server src\" \"sass --watch src/styles/scss:src/styles/css\""
+    },
+    "author": "BijanProgrammer",
+    "license": "MIT",
+    "devDependencies": {
+        "concurrently": "^7.0.0",
+        "live-server": "^1.2.1",
+        "prettier": "^2.5.1",
+        "sass": "^1.49.7"
+    }
+}

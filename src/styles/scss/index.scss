@@ -1,0 +1,43 @@
+body {
+    overflow: hidden;
+
+    display: flex;
+
+    width: 100%;
+
+	// TODO: remove this
+	transform: translateX(-300%);
+	
+    transition: transform var(--animation--duration--normal) ease-in-out;
+	
+	// TODO: remove this
+	transition-duration: 0s;
+
+    section {
+        flex-shrink: 0;
+
+        width: 100%;
+
+        padding-inline: var(--full-width-padding-inline);
+
+        header {
+        }
+
+        main {
+        }
+
+        &.center {
+            display: grid;
+            place-content: center;
+            gap: 1rem;
+
+            header,
+            main {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+	            gap: 1rem;
+            }
+        }
+    }
+}

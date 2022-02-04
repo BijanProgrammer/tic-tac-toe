@@ -1,0 +1,27 @@
+body {
+  overflow: hidden;
+  display: flex;
+  width: 100%;
+  transform: translateX(-300%);
+  transition: transform var(--animation--duration--normal) ease-in-out;
+  transition-duration: 0s;
+}
+body section {
+  flex-shrink: 0;
+  width: 100%;
+  padding-inline: var(--full-width-padding-inline);
+}
+body section.center {
+  display: grid;
+  place-content: center;
+  gap: 1rem;
+}
+body section.center header,
+body section.center main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/*# sourceMappingURL=index.css.map */
