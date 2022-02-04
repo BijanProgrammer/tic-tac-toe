@@ -8,20 +8,59 @@ body {
 }
 body section {
   flex-shrink: 0;
-  width: 100%;
-  padding-inline: var(--full-width-padding-inline);
-}
-body section.center {
   display: grid;
   place-content: center;
   gap: 1rem;
+  width: 100%;
+  padding-inline: var(--full-width-padding-inline);
 }
-body section.center header,
-body section.center main {
+body section header,
+body section main {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
+}
+body section header h2 {
+  text-align: center;
+}
+body section header h2.x {
+  color: var(--color--primary);
+}
+body section header h2.o {
+  color: var(--color--warning);
+}
+body section.game main {
+  flex: 1;
+}
+body section.game main table {
+  aspect-ratio: 1/1;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+body section.game main table,
+body section.game main table td {
+  border: 1px solid var(--color--border--fade);
+}
+body section.game main table td {
+  width: 10rem;
+  padding: 1rem;
+}
+body section.game main table td:not(.x, .o) {
+  cursor: pointer;
+}
+body section.game main table td:not(.x, .o):hover {
+  background-color: var(--color-gray-90);
+}
+body section.game main table td.x {
+  background-color: var(--color--primary);
+  color: var(--color--primary-opposite);
+}
+body section.game main table td.o {
+  background-color: var(--color--warning);
+  color: var(--color--warning-opposite);
 }
 
 /*# sourceMappingURL=index.css.map */

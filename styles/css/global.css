@@ -43,6 +43,7 @@
   --color--body-foreground: var(--color--default-foreground);
   --color--button-disabled-background: var(--color-gray-70);
   --color--button-disabled-foreground: var(--color--default-foreground);
+  --color--border--fade: hsl(0, 0%, 80%);
   --color-input-border: var(--color-gray-90);
   --color-input-border--focus: var(--color-gray-80);
   --color--box-shadow--subtle: hsla(0, 0%, 10%, 12%);
@@ -57,9 +58,7 @@
 :root.theme--dark {
   --color--default-background: var(--color-gray-10);
   --color--default-foreground: var(--color-gray-90);
-  --color--card-background: var(--color-gray-20);
-  --color--card-foreground: var(--color-gray-90);
-  --color--border--fade: var(--color-gray-30);
+  --color--border--fade: hsl(0, 0%, 30%);
   --color--box-shadow--subtle: hsla(0, 0%, 0%, 50%);
 }
 
