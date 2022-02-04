@@ -2,9 +2,7 @@ body {
   overflow: hidden;
   display: flex;
   width: 100%;
-  transform: translateX(-300%);
   transition: transform var(--animation--duration--normal) ease-in-out;
-  transition-duration: 0s;
 }
 body section {
   flex-shrink: 0;
@@ -29,6 +27,14 @@ body section header h2.x {
 }
 body section header h2.o {
   color: var(--color--warning);
+}
+body section.settings main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+body section.settings main input {
+  margin-block-end: 2rem;
 }
 body section.game main {
   flex: 1;

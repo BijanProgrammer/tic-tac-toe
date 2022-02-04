@@ -10,12 +10,14 @@ const board = document.querySelector('#board');
 // GLOBAL VARIABLES
 let gameMode = GameMode.AI_VS_AI;
 let boardSize = 3;
+let maximumSearchableDepthByAi = 2;
+let aiDelay = 1000;
+
 let currentPlayer = Player.O;
 
 // GLOBAL FUNCTIONS
-const play = (selectedGameMode, selectedBoardSize) => {
-    gameMode = selectedGameMode;
-    boardSize = selectedBoardSize;
+const play = (settings) => {
+    ({gameMode, boardSize, maximumSearchableDepthByAi, aiDelay} = {...settings});
 
     generateBoard();
     initializeEventListeners();
@@ -78,17 +80,21 @@ const playWithAi = () => {
     board.className = 'ai';
 
     setTimeout(() => {
-        const boardMatrix = [...board.querySelectorAll('tr')].map((row) =>
+        const matrix = [...board.querySelectorAll('tr')].map((row) =>
             [...row.querySelectorAll('td')].map((cell) => cell.innerHTML.trim())
         );
 
-        const {row, col} = computeBestNextMove(boardMatrix ,  currentPlayer );
-        console.log({row, col});
+        const {row, col} = computeBestNextMove({
+            matrix,
+            currentPlayer,
+            maximumSearchableDepthByAi,
+        });
+
         const cell = board.querySelector(`tr:nth-of-type(${row + 1}) td:nth-of-type(${col + 1})`);
         cell.click();
 
         board.className = '';
-    }, 1000);
+    }, aiDelay);
 };
 
 // EVENT LISTENERS
@@ -127,9 +133,6 @@ const checkCells = (selector) => {
 // MAIN
 const main = () => {
     initializeNavigation(play);
-
-    // TODO: remove this
-    play(GameMode.PLAYER_VS_AI, 3);
 };
 
 main();
