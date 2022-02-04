@@ -93,7 +93,7 @@ const playWithAi = () => {
         const cell = board.querySelector(`tr:nth-of-type(${row + 1}) td:nth-of-type(${col + 1})`);
         cell.click();
 
-        board.className = '';
+        if (gameMode === GameMode.PLAYER_VS_AI) board.className = '';
     }, aiDelay);
 };
 
