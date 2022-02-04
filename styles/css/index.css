@@ -40,25 +40,28 @@ body section.game main table {
   font-size: 2.4rem;
   font-weight: 700;
 }
-body section.game main table,
-body section.game main table td {
+body section.game main table #board.ai {
+  pointer-events: none;
+}
+body section.game main table #board,
+body section.game main table #board td {
   border: 1px solid var(--color--border--fade);
 }
-body section.game main table td {
+body section.game main table #board td {
   width: 10rem;
   padding: 1rem;
 }
-body section.game main table td:not(.x, .o) {
+body section.game main table #board td:not(.x, .o) {
   cursor: pointer;
 }
-body section.game main table td:not(.x, .o):hover {
+body section.game main table #board td:not(.x, .o):hover {
   background-color: var(--color-gray-90);
 }
-body section.game main table td.x {
+body section.game main table #board td.x {
   background-color: var(--color--primary);
   color: var(--color--primary-opposite);
 }
-body section.game main table td.o {
+body section.game main table #board td.o {
   background-color: var(--color--warning);
   color: var(--color--warning-opposite);
 }
