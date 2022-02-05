@@ -1,5 +1,5 @@
 body {
-  overflow: hidden;
+  overflow-x: hidden;
   display: flex;
   width: 100%;
   transition: transform var(--animation--duration--normal) ease-in-out;
@@ -10,7 +10,7 @@ body section {
   place-content: center;
   gap: 1rem;
   width: 100%;
-  padding-inline: var(--full-width-padding-inline);
+  padding: 4rem var(--full-width-padding-inline);
 }
 body section header,
 body section main {

@@ -19,10 +19,15 @@ let currentPlayer = Player.O;
 const play = (settings) => {
     ({gameMode, boardSize, maximumSearchableDepthByAi, aiDelay} = {...settings});
 
+    saveSettings();
     generateBoard();
     initializeEventListeners();
     syncCurrentPlayerIndicator();
     checkForAiTurn();
+};
+
+const saveSettings = () => {
+    localStorage.setItem('settings', JSON.stringify({gameMode, boardSize, maximumSearchableDepthByAi, aiDelay}));
 };
 
 const generateBoard = () => {
@@ -64,7 +69,19 @@ const changePlayer = () => {
 };
 
 const syncCurrentPlayerIndicator = () => {
-    currentPlayerIndicator.innerHTML = `${currentPlayer}'s turn ...`;
+    let name;
+    switch (gameMode) {
+        case GameMode.PLAYER_VS_PLAYER:
+            name = currentPlayer === Player.O ? 'First Player' : 'Second Player';
+            break;
+        case GameMode.PLAYER_VS_AI:
+            name = currentPlayer === Player.O ? 'Player' : 'AI';
+            break;
+        default:
+            name = currentPlayer === Player.O ? 'First AI' : 'Second AI';
+    }
+
+    currentPlayerIndicator.innerHTML = `${name}'s turn ...`;
     currentPlayerIndicator.className = currentPlayer.toLowerCase();
 };
 

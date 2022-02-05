@@ -22,6 +22,8 @@ let aiDelay = 1000;
 
 // GLOBAL FUNCTIONS
 const initializeNavigation = (generateBoard) => {
+    loadSettings();
+
     letsGoButton.addEventListener('click', () => navigate(2));
 
     playerVsPlayerButton.addEventListener('click', () => {
@@ -55,6 +57,15 @@ const initializeNavigation = (generateBoard) => {
     });
 
     playAgainButton.addEventListener('click', () => location.reload());
+};
+
+const loadSettings = () => {
+    const settings = JSON.parse(localStorage.getItem('settings'));
+    if (!settings) return;
+
+    boardSizeInput.value = settings['boardSize'] || 3;
+    maximumSearchableDepthByAiInput.value = settings['maximumSearchableDepthByAi'] || 2;
+    aiDelayInput.value = settings['aiDelay'] || 0;
 };
 
 const navigate = (step) => {
